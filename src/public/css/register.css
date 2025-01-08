@@ -1,0 +1,75 @@
+/* 背景色 */
+body {
+    background-color: #f8f4ef;
+    font-family: 'DotGothic16', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #4a4a4a;
+}
+
+/* メインのフォームエリア */
+.register__content {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 見出し */
+.register-form__heading h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b7d7d;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* フォームグループ */
+.form__group {
+    margin-bottom: 20px;
+}
+
+.form__label--item {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form__input--text {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.form__input--text::placeholder {
+    color: #bbb;
+}
+
+/* ボタン */
+.form__button-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #8b7d7d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form__button-submit:hover {
+    background-color: #7a6c6c;
+}
+
+/* エラー表示 */
+.form__error {
+    color: #ff5f5f;
+    font-size: 14px;
+    margin-top: 5px;
+}

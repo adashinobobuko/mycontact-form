@@ -1,0 +1,77 @@
+/* ヘッダー全体のスタイル */
+.header {
+    background-color: #f8f5f2;
+    /* 背景色を薄いベージュに */
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    /* 左右に要素を配置 */
+    align-items: center;
+    /* 垂直方向に中央寄せ */
+    border-bottom: 1px solid #e2e0de;
+    /* 下に薄いボーダーを追加 */
+}
+
+/* ロゴ部分のスタイル */
+.header-item h1 {
+    font-family: 'Georgia', serif;
+    /* ロゴ用フォント */
+    font-size: 28px;
+    color: #4d403b;
+    /* 濃いブラウン */
+    margin: 0;
+}
+
+/* ナビゲーションのスタイル */
+.header nav ul {
+    list-style: none;
+    /* リストマーカーを削除 */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    /* リンク間にスペースを追加 */
+}
+
+/* ナビゲーションリンクのスタイル */
+.header nav ul li a {
+    text-decoration: none;
+    /* 下線を削除 */
+    color: #6e635d;
+    /* リンクの色をブラウン系に */
+    font-size: 16px;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    /* ボーダーを追加 */
+    border-radius: 5px;
+    /* 角を丸める */
+    background-color: #f8f5f2;
+    /* 背景を同じ色に */
+    transition: all 0.3s ease;
+    /* ホバー時のスムーズな効果 */
+}
+
+/* ホバー時のスタイル */
+.header nav ul li a:hover {
+    background-color: #d7ccc8;
+    /* 背景を濃いベージュに */
+    color: #4d403b;
+    /* 文字色を濃いブラウンに */
+    border-color: #b0a6a1;
+    /* ボーダー色を濃く */
+}
+
+/* レスポンシブ対応（モバイル用） */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        /* ヘッダー内を縦方向に並べる */
+        text-align: center;
+    }
+
+    .header nav ul {
+        flex-direction: column;
+        /* ナビゲーションを縦方向に */
+        gap: 10px;
+    }
+}
