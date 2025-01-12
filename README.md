@@ -1,7 +1,7 @@
 # アプリケーション名
 お問い合わせフォーム(mycotact-form)
 ## 環境構築
-github.com:coachtech-material/laravel-docker-template.git  
+[github.com:coachtech-material/laravel-docker-template.git ](https://github.com/coachtech-material/laravel-docker-template) 
 docker-compose build  
 docker-compose up -d  
 
