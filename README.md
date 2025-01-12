@@ -20,7 +20,6 @@ PHP 7.4.9
 mysql  Ver 15.1 
 Docker
 ## ER図
-< - - - 作成したER図の画像 - - - >
 
 ## URL
 開発環境：http://localhost/  
