@@ -1,16 +1,19 @@
 /* 背景色 */
 body {
     background-color: #f8f4ef;
-    font-family: 'DotGothic16', sans-serif;
     margin: 0;
     padding: 0;
     color: #4a4a4a;
+    display: block;
+    /* flexを無効化 */
+    box-sizing: border-box;
 }
 
 /* メインのフォームエリア */
 .register__content {
     max-width: 400px;
     margin: 50px auto;
+    /* 上下の余白を設定 */
     padding: 30px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -31,13 +34,13 @@ body {
     margin-bottom: 20px;
 }
 
-.form__label--item {
+.form__label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.form__input--text {
+.form__input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -46,12 +49,12 @@ body {
     box-sizing: border-box;
 }
 
-.form__input--text::placeholder {
+.form__input::placeholder {
     color: #bbb;
 }
 
 /* ボタン */
-.form__button-submit {
+.button--primary {
     width: 100%;
     padding: 10px;
     background-color: #8b7d7d;
@@ -63,7 +66,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.form__button-submit:hover {
+.button--primary:hover {
     background-color: #7a6c6c;
 }
 
@@ -72,4 +75,15 @@ body {
     color: #ff5f5f;
     font-size: 14px;
     margin-top: 5px;
+}
+
+/* レスポンシブ対応（モバイル用） */
+@media (max-width: 768px) {
+    .register__content {
+        padding: 20px;
+    }
+
+    .button--primary {
+        font-size: 14px;
+    }
 }

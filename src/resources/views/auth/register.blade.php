@@ -13,29 +13,29 @@
     @csrf
     <div class="form__group">
       <label for="name" class="form__label">お名前</label>
-      <input type="text" id="name" name="name" value="{{ old('name') }}" class="form__input @error('name') form__input--error @enderror" placeholder="例: 山田 太郎" aria-describedby="name-error">
+      <input type="text" id="name" name="name" value="{{ old('name') }}" class="form__input" placeholder="例: 山田 太郎">
       @error('name')
-      <div id="name-error" class="form__error" role="alert">{{ $message }}</div>
+      <div class="form__error">{{ $message }}</div>
       @enderror
     </div>
 
     <div class="form__group">
       <label for="email" class="form__label">メールアドレス</label>
-      <input type="email" id="email" name="email" value="{{ old('email') }}" class="form__input @error('email') form__input--error @enderror" placeholder="例: test@example.com" aria-describedby="email-error">
+      <input type="email" id="email" name="email" value="{{ old('email') }}" class="form__input" placeholder="例: test@example.com">
       @error('email')
-      <div id="email-error" class="form__error" role="alert">{{ $message }}</div>
+      <div class="form__error">{{ $message }}</div>
       @enderror
     </div>
 
     <div class="form__group">
       <label for="password" class="form__label">パスワード</label>
-      <input type="password" id="password" name="password" class="form__input @error('password') form__input--error @enderror" placeholder="例: coachtech1106" aria-describedby="password-error">
+      <input type="password" id="password" name="password" class="form__input" placeholder="例: coachtech1106">
       @error('password')
-      <div id="password-error" class="form__error" role="alert">{{ $message }}</div>
+      <div class="form__error">{{ $message }}</div>
       @enderror
     </div>
 
-    <div class="form__button">
+    <div class="form__group">
       <button type="submit" class="button--primary">登録</button>
     </div>
   </form>

@@ -26,7 +26,7 @@
               <a href="{{ route('register') }}">register</a>
             @else
               <!-- その他のページ -->
-              <a href="{{ route('login') }}">login</a>
+              <p>&nbsp;</p>
             @endif
           </li>
         </ul>

@@ -4,10 +4,12 @@
     /* 背景色を薄いベージュに */
     padding: 20px 40px;
     display: flex;
-    justify-content: space-between;
-    /* 左右に要素を配置 */
+    justify-content: center;
+    /* h1を中央に配置 */
     align-items: center;
-    /* 垂直方向に中央寄せ */
+    /* 縦方向の中央揃え */
+    position: relative;
+    /* 子要素の配置用 */
     border-bottom: 1px solid #e2e0de;
     /* 下に薄いボーダーを追加 */
 }
@@ -20,17 +22,28 @@
     color: #4d403b;
     /* 濃いブラウン */
     margin: 0;
+    position: absolute;
+    left: 50%;
+    /* 左右中央に配置 */
+    transform: translateX(-50%);
+    /* 中央揃え調整 */
 }
 
-/* ナビゲーションのスタイル */
+/* ナビゲーションのスタイル（右上に配置） */
+.header nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 .header nav ul {
     list-style: none;
     /* リストマーカーを削除 */
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 20px;
-    /* リンク間にスペースを追加 */
+    gap: 10px;
+    /* リンク間のスペースを追加 */
 }
 
 /* ナビゲーションリンクのスタイル */
@@ -65,13 +78,19 @@
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
-        /* ヘッダー内を縦方向に並べる */
-        text-align: center;
+        justify-content: center;
+        /* h1を中央寄せ */
+        height: auto;
+    }
+
+    .header nav {
+        top: 10px;
+        right: 10px;
     }
 
     .header nav ul {
         flex-direction: column;
-        /* ナビゲーションを縦方向に */
-        gap: 10px;
+        gap: 5px;
+        /* モバイル用にリンク間を調整 */
     }
 }

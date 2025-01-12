@@ -11,35 +11,37 @@
     @csrf
 
     <!-- お名前 -->
-    <div>
-        <label for="last_name">姓:</label>
-        <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="例: 山田">
-        @error('last_name')
-            <p class="error">{{ $message }}</p>
-        @enderror
+    <div class="name-group">   
+        <div>
+            <label for="last_name">姓:</label>
+            <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="例: 山田">
+            @error('last_name')
+                <p class="error">{{ $message }}</p>
+            @enderror
+        </div>
+        <div>
+            <label for="first_name">名:</label>
+            <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="例: 太郎">
+            @error('first_name')
+                <p class="error">{{ $message }}</p>
+            @enderror
+        </div>
     </div>
-    <div>
-        <label for="first_name">名:</label>
-        <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="例: 太郎">
-        @error('first_name')
-            <p class="error">{{ $message }}</p>
-        @enderror
-    </div>
-
     <!-- 性別 -->
-    <div>
-        <label>性別:</label>
-        <input type="radio" id="male" name="gender" value="1">
-        <label for="male">男性</label>
-        <input type="radio" id="female" name="gender" value="2">
-        <label for="female">女性</label>
-        <input type="radio" id="other" name="gender" value="3">
-        <label for="other">その他</label>
-        @error('gender')
-            <p class="error">{{ $message }}</p>
-        @enderror
+    <div class="gender-group">
+        <div>
+            <label>性別:</label>
+            <input type="radio" id="male" name="gender" value="1">
+            <label for="male">男性</label>
+            <input type="radio" id="female" name="gender" value="2">
+            <label for="female">女性</label>
+            <input type="radio" id="other" name="gender" value="3">
+            <label for="other">その他</label>
+            @error('gender')
+                <p class="error">{{ $message }}</p>
+            @enderror
+        </div>
     </div>
-
     <!-- メールアドレス -->
     <div>
         <label for="email">メールアドレス:</label>

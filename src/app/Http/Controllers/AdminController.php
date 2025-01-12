@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Contact;
-use App\Http\Requests\AdminRequest;//提出前に必要かどうか確認しファイルごと削除する
 
 class AdminController extends Controller
 {
@@ -33,15 +32,13 @@ class AdminController extends Controller
         $query = Contact::query();
 
         // 検索条件を追加
-        if ($request->filled('name')) {
-            $query->where(function($q) use ($request) {
-                $q->where('first_name', 'like', '%' . $request->name . '%')
-                ->orWhere('last_name', 'like', '%' . $request->name . '%');
+        if ($request->filled('query')) {
+            $searchQuery = $request->input('query'); 
+            $query->where(function ($subQuery) use ($searchQuery) {
+                $subQuery->where('first_name', 'LIKE', '%' . $searchQuery . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $searchQuery . '%')
+                        ->orWhere('email', 'LIKE', '%' . $searchQuery . '%');
             });
-        }
-
-        if ($request->filled('email')) {
-            $query->where('email', 'like', '%' . $request->email . '%');
         }
 
         if ($request->filled('gender')) {
@@ -70,13 +67,21 @@ class AdminController extends Controller
 
     public function export(Request $request)
     {
-        $query = Data::query();
+        $contacts = Contact::all();
+        $csvData = "お名前,性別,メールアドレス,お問い合わせ種類,日付\n";
 
-        // 同じ検索条件を適用
-        // ...
-        
-        // CSV形式でエクスポート処理
-        // ...
+        foreach ($contacts as $contact) {
+            $gender = $contact->gender == 1 ? '男性' : ($contact->gender == 2 ? '女性' : 'その他');
+            $csvData .= "{$contact->last_name} {$contact->first_name},{$gender},{$contact->email}," .
+            (optional($contact->category)->content ?? '未分類') . 
+            ",{$contact->created_at->format('Y-m-d')}\n";
+        }
+
+        $response = Response::make($csvData);
+        $response->header('Content-Type', 'text/csv');
+        $response->header('Content-Disposition', 'attachment; filename="contacts.csv"');
+
+        return $response;
     }
 
     public function showDetails($id)

@@ -107,3 +107,28 @@ form label::after {
     color: #d9534f;
     font-weight: bold;
 }
+
+/* 姓と名を横並びにする */
+form .name-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    /* 姓と名の間隔 */
+}
+
+form .name-group div {
+    flex: 1;
+    /* 各フィールドが均等に幅を取る */
+}
+
+form .gender-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* ラジオボタン間の間隔 */
+}
+
+form .gender-group label {
+    margin: 0;
+    /* ラベルの上下余白を削除 */
+}
