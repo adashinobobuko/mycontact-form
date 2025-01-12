@@ -27,8 +27,7 @@ class RegisterRequest extends FormRequest
             //
             'name' => 'required|string|max:255',
             'email' =>  ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', 'unique:users,email','max:255'],
-            'password' => 'required|string|min:8|confirmed|max:255',
-            //passwordのmin:8は必要なのか…？提出までに考える
+            'password' => 'required|string|max:255',
         ];
     }
 

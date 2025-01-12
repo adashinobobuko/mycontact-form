@@ -3,45 +3,69 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Data; // 適切なモデルを指定
+use App\Models\Category;
+use App\Models\Contact;
+use App\Http\Requests\AdminRequest;//提出前に必要かどうか確認しファイルごと削除する
 
 class AdminController extends Controller
 {
+    //$query = Data::query();
+        
     public function index(Request $request)
     {
-        $query = Data::query();
+        // 必要なデータを取得
+        $contacts = Contact::with('category')->paginate(7);
+        $categories = Category::all();
 
-        // 検索条件
-        if ($request->filled('name')) {
-            if ($request->name_match === 'partial') {
-                $query->where('name', 'LIKE', '%' . $request->name . '%');
-            } else {
-                $query->where('name', $request->name);
-            }
-        }
-        if ($request->filled('email')) {
-            $query->where('email', 'LIKE', '%' . $request->email . '%');
-        }
-        if ($request->filled('gender') && $request->gender !== 'all') {
-            $query->where('gender', $request->gender);
-        }
-        if ($request->filled('type')) {
-            $query->where('type', 'LIKE', '%' . $request->type . '%');
-        }
-        if ($request->filled('date')) {
-            $query->whereDate('date', $request->date);
-        }
-
-        // データ取得とページネーション
-        $results = $query->paginate(7);
-
-        return view('admin', compact('results'));
+         // compactの中の変数名を修正
+        return view('admin', compact('contacts', 'categories'));
     }
 
-    public function delete($id)
+     public function delete($id)
     {
         Data::findOrFail($id)->delete();
-        return redirect()->route('admin.index')->with('message', '削除しました');
+         return redirect()->route('admin.index')->with('message', '削除しました');
+    }
+
+    public function search(Request $request)
+    {
+        // クエリビルダーの初期化
+        $query = Contact::query();
+
+        // 検索条件を追加
+        if ($request->filled('name')) {
+            $query->where(function($q) use ($request) {
+                $q->where('first_name', 'like', '%' . $request->name . '%')
+                ->orWhere('last_name', 'like', '%' . $request->name . '%');
+            });
+        }
+
+        if ($request->filled('email')) {
+            $query->where('email', 'like', '%' . $request->email . '%');
+        }
+
+        if ($request->filled('gender')) {
+            $query->where('gender', $request->gender);
+        }
+
+        if ($request->filled('category')) {
+            $query->whereHas('category', function ($q) use ($request) {
+                $q->where('content', 'like', '%' . $request->category . '%');
+            });
+        }
+
+        if ($request->filled('date')) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        // 絞り込んだデータを取得 (ページネーション)
+        $contacts = $query->paginate(7);
+
+        // カテゴリーデータも取得（ドロップダウンが必要な場合）
+        $categories = Category::all();
+
+        // ビューにデータを渡す
+        return view('admin', compact('contacts', 'categories'));
     }
 
     public function export(Request $request)
@@ -57,7 +81,8 @@ class AdminController extends Controller
 
     public function showDetails($id)
     {
-        $data = Data::findOrFail($id);
-        return response()->json($data);
+        $contact = Contact::with('category')->findOrFail($id);
+        return view('admin.details', compact('contact'));
     }
+
 }

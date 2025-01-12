@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 
@@ -33,7 +35,7 @@ class AuthController extends Controller
         ]);
 
         // 登録後、ログイン画面にリダイレクト
-    return redirect('/login')->with('message', '登録が完了しました！');
+        return redirect('/login')->with('message', '登録が完了しました！');
     }
 
     // ログインフォームを表示

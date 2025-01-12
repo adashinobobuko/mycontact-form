@@ -26,13 +26,19 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // �
 //admin関連のルート
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/search', [AdminController::class, 'index'])->name('admin.search');
-    Route::delete('/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+    Route::get('/search', [AdminController::class, 'search'])->name('admin.search');
+    Route::delete('/admin/{id}/delete', [AdminController::class, 'delete'])->name('admin.delete');
     Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
-    Route::get('/details/{id}', [AdminController::class, 'showDetails'])->name('admin.details');
+    Route::get('/admin/{id}/details', [AdminController::class, 'showDetails'])->name('admin.details');
 });
 
 //お問い合わせ関連のルート
 Route::get('/', [ContactController::class,'index']);
-Route::post('/inquiry/confirm', [ContactController::class, 'confirm'])->name('inquiry.confirm');
+Route::post('/inquiry/confirm', [ContactController::class, 'confirm'])->name('inquiry.confirm'); // 確認画面
+Route::post('/inquiry/edit', [ContactController::class, 'edit'])->name('inquiry.edit'); // 修正画面
+Route::post('/inquiry/submit', [ContactController::class, 'submit'])->name('inquiry.submit'); // 送信処理
+//お問い合わせ完了ページの表示
+Route::get('/thanks', function () {return view('thanks');})->name('thanks');
+
+
 

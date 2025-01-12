@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
-@section('content')
-<h1>お問い合わせフォーム</h1>
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endsection
 
-<form action="{{ route('inquiry.confirm') }}" method="post">
+@section('content')
+<h1>Contact</h1>
+
+<form class="form" action="/inquiry/confirm" method="post">
     @csrf
 
     <!-- お名前 -->
@@ -25,11 +29,11 @@
     <!-- 性別 -->
     <div>
         <label>性別:</label>
-        <input type="radio" id="male" name="gender" value="male" {{ old('gender', 'male') === 'male' ? 'checked' : '' }}>
+        <input type="radio" id="male" name="gender" value="1">
         <label for="male">男性</label>
-        <input type="radio" id="female" name="gender" value="female" {{ old('gender') === 'female' ? 'checked' : '' }}>
+        <input type="radio" id="female" name="gender" value="2">
         <label for="female">女性</label>
-        <input type="radio" id="other" name="gender" value="other" {{ old('gender') === 'other' ? 'checked' : '' }}>
+        <input type="radio" id="other" name="gender" value="3">
         <label for="other">その他</label>
         @error('gender')
             <p class="error">{{ $message }}</p>
@@ -50,9 +54,12 @@
         <label for="tel1">電話番号:</label>
         <input type="text" id="tel1" name="tel1" value="{{ old('tel1') }}" placeholder="例: 090" maxlength="4">
         -
+        <label for="tel2" class="sr-only">中間番号:</label>
         <input type="text" id="tel2" name="tel2" value="{{ old('tel2') }}" placeholder="例: 1234" maxlength="4">
         -
+        <label for="tel3" class="sr-only">末尾番号:</label>
         <input type="text" id="tel3" name="tel3" value="{{ old('tel3') }}" placeholder="例: 5678" maxlength="4">
+        
         @error('tel1') <p class="error">{{ $message }}</p> @enderror
         @error('tel2') <p class="error">{{ $message }}</p> @enderror
         @error('tel3') <p class="error">{{ $message }}</p> @enderror
@@ -78,18 +85,20 @@
 
     <!-- お問い合わせの種類 -->
     <div>
-        <label for="type">お問い合わせの種類:</label>
-        <select id="type" name="type">
-            <!--仮、のちにシーディング-->
-            <option value="default" {{ old('type') === 'default' ? 'selected' : '' }}>選択してください</option>
-            <option value="general" {{ old('type') === 'general' ? 'selected' : '' }}>一般</option>
-            <option value="support" {{ old('type') === 'support' ? 'selected' : '' }}>サポート</option>
-            <option value="feedback" {{ old('type') === 'feedback' ? 'selected' : '' }}>フィードバック</option>
+        <label for="category_id">お問い合わせの種類:</label>
+        <select id="category_id" name="category_id">
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                    {{ $category->content }}
+                </option>
+            @endforeach
         </select>
-        @error('type')
+
+        @error('category_id')
             <p class="error">{{ $message }}</p>
         @enderror
     </div>
+
 
     <!-- お問い合わせ内容 -->
     <div>

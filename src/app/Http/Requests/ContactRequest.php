@@ -16,7 +16,7 @@ class ContactRequest extends FormRequest
         return [
             'last_name' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
-            'gender' => 'required|in:male,female,other',
+            'gender' => 'required|in:1,2,3',
             'email' => 'required|email',
             'tel1' => 'required|numeric|digits_between:2,4',
             'tel2' => 'required|numeric|digits_between:2,4',
@@ -24,6 +24,7 @@ class ContactRequest extends FormRequest
             'address' => 'required|string|max:255',
             'building' => 'nullable|string|max:255',
             'type' => 'required|in:general,support,feedback',
+            'category_id' => 'required|exists:categories,id',
             'message' => 'required|string|max:120',
         ];
     }
