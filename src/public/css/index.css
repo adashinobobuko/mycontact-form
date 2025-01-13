@@ -124,6 +124,7 @@ form .name-group div {
 form .gender-group {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     /* ラジオボタン間の間隔 */
 }
@@ -131,4 +132,9 @@ form .gender-group {
 form .gender-group label {
     margin: 0;
     /* ラベルの上下余白を削除 */
+}
+
+form .gender-group div {
+    flex: 1;
+    /* 各フィールドが均等に幅を取る */
 }

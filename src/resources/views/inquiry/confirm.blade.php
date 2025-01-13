@@ -45,7 +45,7 @@
     </tr>
     <tr>
         <th>お問い合わせの種類</th>
-        <td>{{ $data['categories'] }}</td>
+        <td>{{ $categories->where('id', $data['category_id'])->first()->content ?? '不明' }}</td>
     </tr>
     <tr>
         <th>お問い合わせ内容</th>

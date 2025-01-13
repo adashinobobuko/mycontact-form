@@ -40,7 +40,7 @@
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">検索</button>
       <button type="reset" class="btn btn-secondary">リセット</button>
-      <button type="button" class="btn btn-info" onclick="exportCsv()" action="/admin/export">エクスポート</button>
+      <button type="button" class="btn btn-info" onclick="location.href='{{ route('admin.export') }}'">エクスポート</button>
     </div>
   </form>
 

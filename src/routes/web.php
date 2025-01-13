@@ -28,7 +28,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/search', [AdminController::class, 'search'])->name('admin.search');
     Route::delete('/admin/{id}/delete', [AdminController::class, 'delete'])->name('admin.delete');
-    //Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
     Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
     Route::get('/admin/{id}/details', [AdminController::class, 'showDetails'])->name('admin.details');
 });

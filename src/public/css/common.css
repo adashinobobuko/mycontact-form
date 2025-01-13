@@ -2,7 +2,7 @@
 .header {
     background-color: #f8f5f2;
     /* 背景色を薄いベージュに */
-    padding: 20px 40px;
+    padding: 20px 50px;
     display: flex;
     justify-content: center;
     /* h1を中央に配置 */
@@ -17,16 +17,14 @@
 /* ロゴ部分のスタイル */
 .header-item h1 {
     font-family: 'Georgia', serif;
-    /* ロゴ用フォント */
-    font-size: 28px;
+    font-size: 20px;
     color: #4d403b;
-    /* 濃いブラウン */
     margin: 0;
     position: absolute;
     left: 50%;
-    /* 左右中央に配置 */
     transform: translateX(-50%);
-    /* 中央揃え調整 */
+    top: 10px;
+    /* 上方向に調整 */
 }
 
 /* ナビゲーションのスタイル（右上に配置） */

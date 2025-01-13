@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Response;
+
 
 class AdminController extends Controller
 {
@@ -20,7 +22,7 @@ class AdminController extends Controller
         return view('admin', compact('contacts', 'categories'));
     }
 
-     public function delete($id)
+    public function delete($id)
     {
         Data::findOrFail($id)->delete();
          return redirect()->route('admin.index')->with('message', '削除しました');

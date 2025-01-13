@@ -81,6 +81,7 @@ thead th {
     text-align: left;
     font-weight: bold;
     font-size: 1rem;
+    width: auto;
 }
 
 tbody tr:nth-child(even) {
